@@ -1,0 +1,24 @@
+{
+  "name": "airflix-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "boot.js",
+  "scripts": {
+    "start": "nodemon ./boot.js"
+  },
+  "author": "Aram Farahi",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "js-video-url-parser": "^0.2.4",
+    "lodash": "^4.17.4",
+    "randomstring": "^1.1.5",
+    "redis": "^2.8.0",
+    "socket.io": "^2.0.3",
+    "youtube-info": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
