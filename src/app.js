@@ -83,7 +83,7 @@ module.exports = function(app, io) {
         // parse youtube video metadata
         return youtubeInfo(linkInfo.id, function(err, data) {
           if (err) {
-            return socket.emit('videoProposalResolve', true);
+            return socket.emit('videoProposalResolve', 'not_youtube_link');
           }
 
           // send the proposal to the partner
@@ -145,7 +145,6 @@ module.exports = function(app, io) {
       // send the new time to the partner
       helpers.getPartnerIdOfClient(redisClient, socket.id, (partnerId) => {
         socket.broadcast.to(partnerId).emit('videoSeek', timestamp);
-        socket.broadcast.to(partnerId).emit('videoPause');
 
         helpers.getPartnerIdOfClient(redisClient, socket.id, (partnerId) => {
           redisClient.exists('play-' + partnerId, function(err, exists) {
