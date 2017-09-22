@@ -34,13 +34,16 @@ module.exports = function(app, io) {
     });
 
     socket.on('joinSession', function(key) {
+      if (!key) {
+        return socket.emit('joinSessionReply', false);
+      }
+
       redisClient.exists('session-' + key.toUpperCase(), function(err, exists) {
         if (err) throw err;
 
         // check if the key is provided and exists in redis
         if (!exists) {
-          socket.emit('joinSessionReply', false);
-          return false;
+          return socket.emit('joinSessionReply', false);
         }
 
         redisClient.get('session-' + key, function(err, partnerId) {
